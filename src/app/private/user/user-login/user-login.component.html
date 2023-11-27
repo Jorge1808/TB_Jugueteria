@@ -1,0 +1,34 @@
+
+<div class="wrapper fadeInDown" style="margin-top: 50px; padding: 80px;background-image: url(&quot;assets/img/star-sky.jpg&quot;);">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first" style="padding: 30px;">
+        <!-- <img src="assets/img/star-sky.jpg" id="icon" alt="User Icon" /> -->
+        <i class="fas fa-user-circle " style="font-size: 150px"></i>
+        <br>
+      </div>
+  
+      <!-- [formGroup]="loginform" enlaza el loginform creado en el login.component.ts -->
+      <!-- (ngSubmit)="onLogin(loginform.value) Es un evento y llama a la funcion onLogin, esta funcion recibira como parametro
+        loginform.value (los valores que tiene el loginform) -->
+
+      <form [formGroup]="loginform" (ngSubmit)="onLogin(loginform)">
+        <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="usuario">
+        <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <!--Register -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Registrate</a>
+      </div>
+  
+    </div>
+  </div>
