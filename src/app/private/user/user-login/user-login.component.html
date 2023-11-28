@@ -1,5 +1,5 @@
 
-<div class="wrapper fadeInDown" style="margin-top: 50px; padding: 80px;background-image: url(&quot;assets/img/star-sky.jpg&quot;);">
+<div class="wrapper fadeInDown" style="margin-top: 50px; padding: 80px;background-image: url(&quot;assets/img/portfolio/game.png&quot;);">
     <div id="formContent">
       <!-- Tabs Titles -->
   
@@ -14,10 +14,10 @@
       <!-- (ngSubmit)="onLogin(loginform.value) Es un evento y llama a la funcion onLogin, esta funcion recibira como parametro
         loginform.value (los valores que tiene el loginform) -->
 
-      <form [formGroup]="loginform" (ngSubmit)="onLogin(loginform)">
+      <form [formGroup]="newform" >
         <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="usuario">
         <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="submit" class="fadeIn fourth" value="Log In" (click)="__onSubmit()">
       </form>
   
       <!-- Remind Passowrd -->
@@ -27,7 +27,7 @@
 
       <!--Register -->
       <div id="formFooter">
-        <a class="underlineHover" href="#">Registrate</a>
+        <a class="underlineHover" href="user-new">Registrate</a>
       </div>
   
     </div>

@@ -10,7 +10,7 @@
             <h2 class="mb-4">Te contactamos</h2>
             <form method="post" [formGroup]="contactusForm">
                 <div class="form-group">
-                    <input type="text" formControlName="tipoEmpresa" placeholder="Ingrese Nombre" class="form-control">
+                    <input type="text" formControlName="tipoEmpresa" placeholder="Razon social o RUC" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="text" formControlName="apellido" placeholder="Ingrese Apellido" class="form-control">
@@ -25,7 +25,6 @@
                     <button class="btn btn-primary" (click)="__onSubmit()">Enviar</button>
                 </div>
                 <a class="link" href="terminos" style="color: blue;">Terminos y condiciones </a>
-
             </form>
               
           </div>

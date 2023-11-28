@@ -9,6 +9,7 @@ import { UserLoginComponent } from "./private/user/user-login/user-login.compone
 import { ConocenosComponent } from "./public/conocenos/conocenos.component";
 import { CatalogoComponent } from "./public/catalogo/catalogo.component";
 import { CategoriaAccionComponent } from "./public/categoria-accion/categoria-accion.component";
+import { TerminosComponent } from "./public/terminos/terminos.component";
 
 
 const routes: Routes=[
@@ -21,7 +22,8 @@ const routes: Routes=[
     {path:"user-login",component:UserLoginComponent},
     {path:"catalogo",component:CatalogoComponent},
     {path:"conocenos",component:ConocenosComponent},
-    {path:"accion",component:CategoriaAccionComponent}
+    {path:"accion",component:CategoriaAccionComponent},
+    {path:"terminos",component:TerminosComponent}
 
 ];
 

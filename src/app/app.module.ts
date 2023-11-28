@@ -19,6 +19,7 @@ import { MarcasComponent } from './public/marcas/marcas.component';
 import { OfertasComponent } from './public/ofertas/ofertas.component';
 import { CategoriaAccionComponent } from './public/categoria-accion/categoria-accion.component';
 import { SuscribeteComponent } from './public/suscribete/suscribete.component';
+import { TerminosComponent } from './public/terminos/terminos.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SuscribeteComponent } from './public/suscribete/suscribete.component';
     MarcasComponent,
     OfertasComponent,
     CategoriaAccionComponent,
-    SuscribeteComponent
+    SuscribeteComponent,
+    TerminosComponent
   ],
   imports: [
     BrowserModule,

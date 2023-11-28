@@ -12,10 +12,9 @@ export class VentasCorporativasComponent {
 
    contactusForm = this.fb.group({
     tipoEmpresa: ["", Validators.required],
-    nombre: ["", Validators.required],
     apellido: ["", Validators.required],
     correo: ["", [Validators.required, Validators.email]],
-    mensaje:[""]
+    mensaje:["",Validators.required]
     
   })
 

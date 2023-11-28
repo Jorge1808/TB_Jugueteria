@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl,Validators} from '@angular/forms'
+import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms'
 
 
 
@@ -8,19 +8,22 @@ import {FormGroup,FormControl,Validators} from '@angular/forms'
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
-export class UserLoginComponent implements OnInit{
+export class UserLoginComponent {
 
-  loginform = new FormGroup({
-    usuario:new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required)
+  constructor(private fb: FormBuilder) {}
+
+  newform = this.fb.group({
+    usuario: ["", Validators.required],
+    password: ["", Validators.required]
+    
   })
 
-  constructor(){}
-  ngOnInit(): void {
-  }
-  onLogin(form: any){
-    console.log(form)
-
+  __onSubmit() {
+    if(this.newform.valid) {
+      console.log(this.newform.value)
+    } else {
+      alert("Formulario no valido")
+    }
   }
 
 }
