@@ -20,6 +20,8 @@ import { OfertasComponent } from './public/ofertas/ofertas.component';
 import { CategoriaAccionComponent } from './public/categoria-accion/categoria-accion.component';
 import { SuscribeteComponent } from './public/suscribete/suscribete.component';
 import { TerminosComponent } from './public/terminos/terminos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { __values } from 'tslib';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { TerminosComponent } from './public/terminos/terminos.component';
     TerminosComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
@@ -47,3 +50,6 @@ import { TerminosComponent } from './public/terminos/terminos.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+

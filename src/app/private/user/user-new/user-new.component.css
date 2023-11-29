@@ -292,3 +292,39 @@ input[type=email]:placeholder {
 #icon {
   width:60%;
 }
+
+/*Password*/
+.password-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Estilo para el mensaje de error de la contraseña */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Estilo para indicar la fortaleza de la contraseña */
+.password-strength {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Estilo para una contraseña débil */
+.password-weak {
+  color: red;
+}
+
+/* Estilo para una contraseña moderada */
+.password-moderate {
+  color: orange;
+}
+
+/* Estilo para una contraseña fuerte */
+.password-strong {
+  color: green;
+}

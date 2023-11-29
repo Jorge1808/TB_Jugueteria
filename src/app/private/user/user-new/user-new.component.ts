@@ -1,8 +1,10 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component} from '@angular/core';
-import {FormsModule,FormBuilder,FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+
+import { FormBuilder, Validators,AbstractControl,ValidationErrors, ValidatorFn   } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SocialAuthServiceConfig,SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { RegistroUserService } from 'src/app/service/registro-user.service';
+
 
 
 
@@ -14,53 +16,77 @@ import { SocialAuthServiceConfig,SocialAuthService, GoogleLoginProvider, SocialU
 })
 export class UserNewComponent {
 
- 
-  constructor(private fb: FormBuilder,private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private registroUserService: RegistroUserService
+  ) {}
 
-  numeroTelefono: string = '';
-   newform = this.fb.group({
-   nombre: ["", Validators.required],
-   apellidos: ["", Validators.required],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-   correo: ["", [Validators.required, Validators.email]],
-   empresa: ["",],
-   direccion: ["", Validators.required],
-   RefDireccion: ["", Validators.required],
-   departamento: ["", Validators.required],
-   provincia: ["", Validators.required],
-   distrito: ["", Validators.required],
-   tipoDocumento: ["", Validators.required],
-   telefono: ["", Validators.required], 
-   terms: ["", Validators.required],                                     
+  
+    newform = this.fb.group({
+    nombre: ["", Validators.required],
+    apellido: ["", Validators.required],
+    correoElectronico: ["", [Validators.required, Validators.email]],
+    empresa: [""],
+    direccion: ["", Validators.required],
+    refDireccion: ["", Validators.required],
+    departamento: ["", Validators.required],
+    provincia: ["", Validators.required],
+    distrito: ["", Validators.required],
+    tipoDocumento: ["", Validators.required],
+    telefono: ["", Validators.required],
+    terms: ["", Validators.required],
+    contraseña: ["", [Validators.required, Validators.minLength(8), this.passwordValidator]]
     
- }) 
- __onSubmit() {
-  if(this.newform.valid) {
-    console.log(this.newform.value)
+  });
+  
+  passwordValidator(control: AbstractControl | null): ValidationErrors | null{
+    if (!control ||!control.value) {
+      return null; // No hay valor, no se aplica la validación
+    }
+  
+    // Mínimo 8 caracteres, al menos una letra minúscula, una letra mayúscula, un número y un carácter especial
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
+  
+    return regex.test(control.value) ? null : { invalidPassword: false };
     
-    this.router.navigate(['/user-login']);
-  } else {
-    alert("Formulario no valido")
+  }
+
+
+  __onSubmit() {
+    if (this.newform.valid) {
+      console.log(this.newform.value);
+
+      // código de la solicitud POST 
+      const dataToSend = this.newform.value;
+      this.registroUserService.postData(dataToSend).subscribe(
+        (response) => {
+          console.log('Respuesta de la API:', response);
+          
+        },
+        (error) => {
+          console.error('Error en la solicitud POST:', error);
+          
+        }
+      );
+
+//Para redireccionar a la pantalla del login 
+
+      this.router.navigate(['/user-login']);
+    } else {
+      alert("Formulario no válido");
+    }
+  }
+
+  isInputDisabled(): boolean {
+    const tipoDocumentoValue = this.newform.value.tipoDocumento;
+    return tipoDocumentoValue === '';
+  }
+
+  isInputDisabled2(): boolean {
+    const termsValue = this.newform.value.terms;
+    return !termsValue;
   }
 }
- isInputDisabled(): boolean {
-  // Obtén el valor actual del tipoDocumento
-  const tipoDocumentoValue = this.newform.value.tipoDocumento;
 
-  // Devuelve true si el valor es '', de lo contrario, false
-  return tipoDocumentoValue === '';
-}
-
-isInputDisabled2() {
-  // Obtén el valor actual del tipoDocumento
-  const termsValue = this.newform.value.terms;
-
-  // Devuelve true si el valor es '', de lo contrario, false
-  return !termsValue;
-}
-
-
-
-
-
-}
 

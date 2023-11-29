@@ -14,13 +14,14 @@
       <form [formGroup]="newform" >
         <div>
           <input type="text"  class="fadeIn second"  placeholder="Nombres" formControlName="nombre">
-          <input type="text"  class="fadeIn third"  placeholder="Apellidos" formControlName="apellidos">
-          <input type="email"  class="fadeIn fourth"  placeholder="ejemplo@email.com" formControlName="correo">
+          <input type="text"  class="fadeIn third"  placeholder="Apellidos" formControlName="apellido">
+          <input type="email"  class="fadeIn fourth"  placeholder="ejemplo@email.com" formControlName="correoElectronico">
         </div>
+
         <div>
           <input type="text"  class="fadeIn second"  placeholder="Empresa" formControlName="empresa">
           <input type="text"  class="fadeIn third"  placeholder="Dirección" formControlName="direccion">
-          <input type="text"  class="fadeIn second"  placeholder="Referencia Direccion" formControlName="RefDireccion">
+          <input type="text"  class="fadeIn second"  placeholder="Referencia Direccion" formControlName="refDireccion">
         </div>
         <div>
           <input type="text"  class="fadeIn fourth"  placeholder="Distrito" formControlName="distrito">
@@ -47,6 +48,31 @@
           </label>
                
         </div>
+        <!-- ... Otros campos del formulario ... -->
+        <div>
+          <label for="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            class="password-input"
+            placeholder="Ingresa tu contraseña"
+            formControlName="contraseña"
+          />
+        
+          <!-- Mensajes de error generales -->
+          <div *ngIf="newform.get('contraseña')?.errors" class="error-message">
+            <p *ngIf="newform.get('contraseña')?.hasError('required')">
+              La contraseña es obligatoria.
+            </p>
+            <p *ngIf="newform.get('contraseña')?.hasError('minlength')">
+              La contraseña debe tener al menos 8 caracteres.
+            </p>
+            <p *ngIf="newform.get('contraseña')?.hasError('invalidPassword')">
+              La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.
+            </p>
+          </div>
+        </div>
+
         <p *ngIf="isInputDisabled2()" style="color: brown;">
           Debes aceptar los terminos y condiciones.
         </p>
@@ -56,7 +82,8 @@
         <!-- <div class="form-group">
           <p>
               Datos del formulario: {{ newform.value | json }}
-              valor check : {{ isInputDisabled2()| json }}
+             
+              
           </p>
           <p>
               Formulario Valido?: {{ newform.valid }}
@@ -66,10 +93,7 @@
       </form>
 
       <!--Register -->
-      <div id="formFooter">
-        
-        
-        
+      <div id="formFooter"> 
       </div>
   
     </div>

@@ -15,8 +15,8 @@
         loginform.value (los valores que tiene el loginform) -->
 
       <form [formGroup]="newform" >
-        <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="usuario">
-        <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="password">
+        <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="correoElectronico">
+        <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="contraseña">
         <input type="submit" class="fadeIn fourth" value="Log In" (click)="__onSubmit()">
       </form>
   
@@ -29,6 +29,18 @@
       <div id="formFooter">
         <a class="underlineHover" href="user-new">Registrate</a>
       </div>
-  
+
+      <!-- <div class="form-group">
+        <p>
+            valor login : {{ getlogin() | json }}
+           
+            
+        </p>
+        <p>
+            Formulario Valido?: {{ newform.valid }}
+        </p>
+       
+    </div>
+   -->
     </div>
   </div>

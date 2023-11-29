@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserLoginService } from './service/user-login.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TB1';
+  constructor(private log:UserLoginService){
+  
+  }
+  // Para recuperar el valor del login
+ getlogin(){
+  return this.log.getUserLoginStatus();
+ }
+
 }
