@@ -22,6 +22,8 @@ import { SuscribeteComponent } from './public/suscribete/suscribete.component';
 import { TerminosComponent } from './public/terminos/terminos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { __values } from 'tslib';
+import { PerfilComponent } from './private/user/perfil/perfil.component';
+import { ModificaContraComponent } from './private/user/modifica-contra/modifica-contra.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { __values } from 'tslib';
     OfertasComponent,
     CategoriaAccionComponent,
     SuscribeteComponent,
-    TerminosComponent
+    TerminosComponent,
+    PerfilComponent,
+    ModificaContraComponent
   ],
   imports: [
     HttpClientModule,

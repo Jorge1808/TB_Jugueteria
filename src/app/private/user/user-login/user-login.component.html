@@ -3,26 +3,21 @@
     <div id="formContent">
       <!-- Tabs Titles -->
   
-      <!-- Icon -->
+      <!-- Icono -->
       <div class="fadeIn first" style="padding: 30px;">
         <!-- <img src="assets/img/star-sky.jpg" id="icon" alt="User Icon" /> -->
         <i class="fas fa-user-circle " style="font-size: 150px"></i>
         <br>
       </div>
-  
-      <!-- [formGroup]="loginform" enlaza el loginform creado en el login.component.ts -->
-      <!-- (ngSubmit)="onLogin(loginform.value) Es un evento y llama a la funcion onLogin, esta funcion recibira como parametro
-        loginform.value (los valores que tiene el loginform) -->
 
       <form [formGroup]="newform" >
-        <input type="text" id="login" class="fadeIn second"  placeholder="login" formControlName="correoElectronico">
-        <input type="password" id="password" class="fadeIn third"  placeholder="password" formControlName="contraseña">
+        <input type="text" id="login" class="fadeIn second"  placeholder="Correo" formControlName="uid" >
+        <input type="password" id="password" class="fadeIn third"  placeholder="contraseña" formControlName="pwd"autocomplete="off">
         <input type="submit" class="fadeIn fourth" value="Log In" (click)="__onSubmit()">
       </form>
-  
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="#">¿Olvidaste tu contraseña?</a>
+        <a class="underlineHover" href="modifica-contra">¿Olvidaste tu contraseña?</a>
       </div>
 
       <!--Register -->
@@ -30,9 +25,9 @@
         <a class="underlineHover" href="user-new">Registrate</a>
       </div>
 
-      <!-- <div class="form-group">
+      <div class="form-group">
         <p>
-            valor login : {{ getlogin() | json }}
+            valor login : {{ newform.value| json }}
            
             
         </p>
@@ -41,6 +36,6 @@
         </p>
        
     </div>
-   -->
+  
     </div>
   </div>

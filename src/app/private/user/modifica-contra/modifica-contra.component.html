@@ -1,0 +1,36 @@
+<form style="padding: 250px;">
+    <div>
+        <label for="password">Ingresa la antigua contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          class="password-input"
+          placeholder="Ingresa tu contraseña"
+          formControlName="contraseña"
+        />
+    </div>
+
+    <div>
+        <label for="password">Ingresa la nueva contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          class="password-input"
+          placeholder="Ingresa tu contraseña"
+          formControlName="contraseña"
+        />
+      
+        <!-- Mensajes de error generales -->
+        <div *ngIf="newform.get('contraseñaNueva')?.errors" class="error-message">
+          <p *ngIf="newform.get('contraseñaNueva')?.hasError('required')">
+            La contraseña es obligatoria.
+          </p>
+          <p *ngIf="newform.get('contraseñaNueva')?.hasError('minlength')">
+            La contraseña debe tener al menos 8 caracteres.
+          </p>
+          <p *ngIf="newform.get('contraseñaNueva')?.hasError('invalidPassword')">
+            La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial.
+          </p>
+        </div>
+      </div>
+</form>

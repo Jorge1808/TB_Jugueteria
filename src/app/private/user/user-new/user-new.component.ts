@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { FormBuilder, Validators,AbstractControl,ValidationErrors, ValidatorFn   } from '@angular/forms';
+import { FormsModule,FormBuilder, Validators,AbstractControl,ValidationErrors} from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { RegistroUserService } from 'src/app/service/registro-user.service';
@@ -16,10 +17,12 @@ import { RegistroUserService } from 'src/app/service/registro-user.service';
 })
 export class UserNewComponent {
 
+ 
+  public userLoginOn =true;
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private registroUserService: RegistroUserService
+    private rs: RegistroUserService
   ) {}
 
   
@@ -35,8 +38,9 @@ export class UserNewComponent {
     distrito: ["", Validators.required],
     tipoDocumento: ["", Validators.required],
     telefono: ["", Validators.required],
-    terms: ["", Validators.required],
-    contraseña: ["", [Validators.required, Validators.minLength(8), this.passwordValidator]]
+    // terms: ["", Validators.required],
+    contraseña: ["", [Validators.required, Validators.minLength(8)]],
+    // validador:["", Validators.required]
     
   });
   
@@ -44,48 +48,40 @@ export class UserNewComponent {
     if (!control ||!control.value) {
       return null; // No hay valor, no se aplica la validación
     }
-  
     // Mínimo 8 caracteres, al menos una letra minúscula, una letra mayúscula, un número y un carácter especial
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
-  
-    return regex.test(control.value) ? null : { invalidPassword: false };
-    
+    return regex.test(control.value) ? null : { invalidPassword: false };   
   }
 
+  RegistroUsuario(data : any){
 
+    this.rs.postData(data).subscribe((rest : any )=>{
+      if(rest.isSucess){
+        this.router.navigate(['/user-login']); 
+      }else{
+        alert('error de conexión')
+      }
+    })
+
+
+  }
+
+  
   __onSubmit() {
     if (this.newform.valid) {
-      console.log(this.newform.value);
+      this.RegistroUsuario(this.newform.value)
 
-      // código de la solicitud POST 
-      const dataToSend = this.newform.value;
-      this.registroUserService.postData(dataToSend).subscribe(
-        (response) => {
-          console.log('Respuesta de la API:', response);
-          
-        },
-        (error) => {
-          console.error('Error en la solicitud POST:', error);
-          
-        }
-      );
-
-//Para redireccionar a la pantalla del login 
-
-      this.router.navigate(['/user-login']);
     } else {
       alert("Formulario no válido");
     }
   }
-
-  isInputDisabled(): boolean {
-    const tipoDocumentoValue = this.newform.value.tipoDocumento;
-    return tipoDocumentoValue === '';
+  
+  getUserLoginStatus(): boolean {
+    return this.userLoginOn;
   }
 
-  isInputDisabled2(): boolean {
-    const termsValue = this.newform.value.terms;
-    return !termsValue;
+  setUserLoginStatus(status: boolean): void {
+    this.userLoginOn = status;
   }
 }
 

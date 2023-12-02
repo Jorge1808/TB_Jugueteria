@@ -1,4 +1,4 @@
-<header class=" text-white text-center">
+<header class=" text-white text-center" >
   <nav class="navbar navbar-expand-lg navbar-light fixed-top " style="background-color: rgb(234, 172, 29);">
 <!-- Icono del home     -->
     <a class="navbar-brand js-scroll-trigger" routerLink="home" style="color: rgb(10, 10, 10); margin-right: 740px;">
@@ -17,10 +17,10 @@
               Categorias
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" routerLink="accion">Acción</a>
-              <a class="dropdown-item" href="#">Carros</a>
-              <a class="dropdown-item" href="#">Bebes</a>
-              <a class="dropdown-item" href="#">Juegos de Mesa</a>
+              <a class="dropdown-item" routerLink="accion" (click)="SeleccionaCategoria(1)">Acción</a>
+              <a class="dropdown-item" routerLink="accion" (click)="SeleccionaCategoria(3)">Carros</a>
+              <a class="dropdown-item" routerLink="accion" (click)="SeleccionaCategoria(4)">Bebes</a>
+              <a class="dropdown-item" routerLink="accion" (click)="SeleccionaCategoria(2)">Juegos de Mesa</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -42,13 +42,14 @@
         <li class="nav-item" >
           <a class="nav-link" routerLink="ventas-corporativas" id="navbarDropdownMenuLink" style="width: 200px; " > Ventas Corpoativas </a>
         </li>
+        
         <div class="container  ">
 <!-- Icono user         -->
           <a class="navbar-brand js-scroll-trigger " *ngIf="getlogin()" routerLink="user-login" id="navbarDropdownMenuLink"  style="color: rgb(10, 10, 10); ">
             <i class="fas fa-user-circle " style="font-size: x-large"></i>
           </a>
 <!-- Icono user Logueado     -->
-          <a class="navbar-brand js-scroll-trigger " *ngIf="!getlogin()"  id="navbarDropdownMenuLink"  style="color: rgb(37, 23, 130) 0.573)); ">
+          <a class="navbar-brand js-scroll-trigger " *ngIf="!getlogin()" routerLink="perfil"  id="navbarDropdownMenuLink"  style="color: rgb(37, 23, 130) ; ">
             <i class="fas fa-star " style="font-size: x-large"></i>
           </a>
 <!--Icono Carrito de compras  -->

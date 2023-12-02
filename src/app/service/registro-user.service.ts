@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RegistroUserService {
-
-  private urlApi = 'http://localhost:5266/api/CrearUsuario/Guardar';
+  
+  //APpi para Crear usuario
+  private urlApi = 'https://localhost:44309/api/Usuario/Actualizar';
 
   constructor(private readonly http: HttpClient) { }
 

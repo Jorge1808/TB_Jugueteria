@@ -2,39 +2,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserLoginComponent } from '../private/user/user-login/user-login.component';
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
-
-  private urlApi = 'http://localhost:5266/api/Autenticacion/Validar';
+  //Api para el login 
+  private urlApi = 'https://localhost:44309/api/Usuario/Logeo';
+  //Api para obtener un perfil
+  private urlApiLogin='https://localhost:44309/api/Usuario/Listar/id';
+  public correoLogin:string | undefined;
 
   constructor(private readonly http: HttpClient) { }
 
-  public postData(data: any): Observable<any> {
+  public logeo(data: any): Observable<any> {
     // Configura las cabeceras según sea necesario
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // Otras cabeceras si es necesario
-    });
-
+    });   
     // Realiza la solicitud POST con los datos proporcionados
+    this.correoLogin=data.uid;
+    //data contiene los valores que se enviaron en el formulario
     return this.http.post<any>(this.urlApi, data, { headers });
   }
-
-
-  // Logica para el login 
-  private userLoginOn = true;
-
-  getUserLoginStatus(): boolean {
-    return this.userLoginOn;
+  ngOnInit():void{
+    this.obtenerDatosCorreo();  
   }
-
-  setUserLoginStatus(status: boolean): void {
-    this.userLoginOn = status;
+  
+  obtenerDatosCorreo(){
+    // Añadir el parámetro 'correo' a la URL
+    const urlWithParam = `${this.urlApiLogin}?correo=${this.correoLogin}`;
+    return this.http.get(urlWithParam);
   }
+  
+
+    // Logica para el login 
+    private userLoginOn = true;
+    getUserLoginStatus(): boolean {
+      return this.userLoginOn;
+    }
+    setUserLoginStatus(status: boolean): void {
+      this.userLoginOn = status;
+    }
+ 
+  
+
 }
+  

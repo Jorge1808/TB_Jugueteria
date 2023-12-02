@@ -1,7 +1,7 @@
 // user-login.component.ts
 
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {  FormBuilder, Validators } from '@angular/forms';
 import { UserLoginService } from 'src/app/service/user-login.service';
 import { Router } from '@angular/router';
 
@@ -13,38 +13,46 @@ import { Router } from '@angular/router';
 export class UserLoginComponent {
   constructor(
     private fb: FormBuilder,
-    private registroUserService: UserLoginService,
+    private us: UserLoginService,
     private router: Router
   ) {}
 
   newform = this.fb.group({
-    correoElectronico: ['', Validators.required],
-    contraseña: ['', Validators.required],
+    uid: ['', Validators.required],
+    pwd: ['', Validators.required],
   });
+
+
+  login(data : any ){
+
+    this.us.logeo(data).subscribe((rest: any)=>{
+      if(rest.isSucess){
+        //Para que al cerrar la pestaña no se quede el token almacenado 
+        sessionStorage.setItem("token",rest.data.token)
+        sessionStorage.setItem("user",rest.data.nombre)
+        
+        this.router.navigateByUrl("/perfil",{skipLocationChange:false }).then(()=>{
+        this.router.navigate(["perfil"])
+        //para cambiar el icono de inicio de secion
+        this.us.setUserLoginStatus(false)
+          // window.location.reload()
+        }); 
+
+      }else{
+        alert('Credenciales invalidas');
+        
+      }
+    })
+  }
 
   __onSubmit() {
     if (this.newform.valid) {
-      const dataToSend = this.newform.value;
-      this.registroUserService.postData(dataToSend).subscribe(
-        (response) => {
-          console.log('Respuesta de la API:', response);
-          this.registroUserService.setUserLoginStatus(false); // Cambia el estado de inicio de sesión
-          this.router.navigate(['/home']);
-        },
-        (error) => {
-          console.error('Error en la solicitud POST:', error);
-          this.router.navigate(['/user-login']);
-          alert('Error Usuario o Contraseña Incorrecto');
-          this.registroUserService.setUserLoginStatus(true);
-        }
-      );
+      this.login(this.newform.value)
     } else {
       alert('Formulario no válido');
     }
   }
-  // Comprobacion del login
-  // getlogin(){
-  //   return this.registroUserService.getUserLoginStatus();
-  // }
+
+
 
 }

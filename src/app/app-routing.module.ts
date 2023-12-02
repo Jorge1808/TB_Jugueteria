@@ -10,7 +10,8 @@ import { ConocenosComponent } from "./public/conocenos/conocenos.component";
 import { CatalogoComponent } from "./public/catalogo/catalogo.component";
 import { CategoriaAccionComponent } from "./public/categoria-accion/categoria-accion.component";
 import { TerminosComponent } from "./public/terminos/terminos.component";
-
+import { PerfilComponent } from "./private/user/perfil/perfil.component";
+import { ModificaContraComponent } from "./private/user/modifica-contra/modifica-contra.component";
 
 const routes: Routes=[
     
@@ -23,7 +24,9 @@ const routes: Routes=[
     {path:"catalogo",component:CatalogoComponent},
     {path:"conocenos",component:ConocenosComponent},
     {path:"accion",component:CategoriaAccionComponent},
-    {path:"terminos",component:TerminosComponent}
+    {path:"terminos",component:TerminosComponent},
+    {path:"perfil",component:PerfilComponent},
+    {path:"modifica-contra",component:ModificaContraComponent}
 
 ];
 
